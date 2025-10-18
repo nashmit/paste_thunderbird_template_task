@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+TEMPLATE="${HOME}/.config/templates/copyq/template_thunderbird_task.in"
+
+# Sanity checks
+if ! command -v copyq >/dev/null 2>&1; then
+  echo "Error: copyq is not installed or not in PATH." >&2
+  exit 1
+fi
+if [[ ! -r "$TEMPLATE" ]]; then
+  echo "Error: template not found or not readable: $TEMPLATE" >&2
+  exit 1
+fi
+
+# Load template & paste as **plain text**
+# 1) write text/plain to clipboard
+copyq copy - < $TEMPLATE
+# 2) paste as plain text (strips any formatting just in case)
+copyq paste
+

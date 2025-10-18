@@ -1,0 +1,7 @@
+#!/bin/bash
+
+mkdir -p "${HOME}/.config/templates/copyq/" && cp template_thunderbird_task.in "${HOME}/.config/templates/copyq/template_thunderbird_task.in"
+sudo mkdir -p /opt/paste_thunderbird_template_task/ && sudo cp paste_thunderbird_template_task /opt/paste_thunderbird_template_task/paste_thunderbird_template_task
+sudo chmod +x /opt/paste_thunderbird_template_task/paste_thunderbird_template_task
+sudo ln -sf /opt/paste_thunderbird_template_task/paste_thunderbird_template_task /usr/local/bin/paste_thunderbird_template_task
+
