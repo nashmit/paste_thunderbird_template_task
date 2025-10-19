@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-TEMPLATE="${HOME}/.config/templates/copyq/template_thunderbird_task.in"
+TEMPLATE="${HOME}/.config/templates/copyq/template_thunderbird_task.rtf.in.rtf"
 
 # Sanity checks
 if ! command -v copyq >/dev/null 2>&1; then
@@ -12,9 +12,8 @@ if [[ ! -r "$TEMPLATE" ]]; then
   exit 1
 fi
 
-# Load template & paste as **plain text**
-# 1) write text/plain to clipboard
-copyq copy - < $TEMPLATE
-# 2) paste as plain text (strips any formatting just in case)
-copyq paste
+copyq copy \
+  text/html  "$(pandoc -f rtf -t html --wrap=none "$TEMPLATE")" \
+  text/plain "$(pandoc -f rtf -t plain "$TEMPLATE")"
 
+copyq paste
