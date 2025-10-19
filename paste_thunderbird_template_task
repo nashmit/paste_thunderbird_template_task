@@ -7,6 +7,11 @@ if ! command -v copyq >/dev/null 2>&1; then
   echo "Error: copyq is not installed or not in PATH." >&2
   exit 1
 fi
+if ! command -v pandoc >/dev/null 2>&1; then
+  echo "Error: pandoc is not installed or not in PATH." >&2
+  exit 1
+fi
+
 if [[ ! -r "$TEMPLATE" ]]; then
   echo "Error: template not found or not readable: $TEMPLATE" >&2
   exit 1
